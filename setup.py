@@ -6,7 +6,7 @@ THIS = __file__
 HERE = os.path.dirname(THIS)
 README = os.path.join(HERE, 'README.md')
 
-__author__ = 'ping <lastmodified@gmail.com>'
+__author__ = 'ping <lastmodified@gmail.com>, reala10n <downtown2u@gmail.com>'
 __version__ = '1.6.0'
 
 
