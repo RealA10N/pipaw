@@ -5,12 +5,6 @@ try:
 except ImportError:
     from distutils.core import setup
 
-try:
-    import unittest.mock
-    has_mock = True
-except ImportError:
-    has_mock = False
-
 __author__ = 'ping <lastmodified@gmail.com>'
 __version__ = '1.6.0'
 
@@ -19,7 +13,6 @@ packages = [
     'instagram_private_api.endpoints',
     'instagram_web_api'
 ]
-test_reqs = [] if has_mock else ['mock']
 
 with io.open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
@@ -32,7 +25,6 @@ setup(
     license='MIT',
     url='https://github.com/ping/instagram_private_api/tree/master',
     install_requires=[],
-    test_requires=test_reqs,
     keywords='instagram private api',
     description='A client interface for the private Instagram API.',
     long_description=long_description,
