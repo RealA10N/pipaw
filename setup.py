@@ -1,5 +1,10 @@
-from os import path
-import io
+import os.path
+
+
+THIS = __file__
+HERE = os.path.dirname(THIS)
+README = os.path.join(HERE, 'README.md')
+
 try:
     from setuptools import setup
 except ImportError:
@@ -14,7 +19,7 @@ packages = [
     'instagram_web_api'
 ]
 
-with io.open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding='utf-8') as f:
+with open(README, encoding='utf8') as f:
     long_description = f.read()
 
 setup(
