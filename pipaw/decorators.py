@@ -7,10 +7,7 @@ from dataclasses import dataclass, field
 class TimedCache:
     value: typing.Any
     delta: timedelta
-    created: datetime = field(init=False)
-
-    def __post_init__(self):
-        super().__setattr__('created', datetime.now())
+    created: datetime = field(init=False, default_factory=datetime.now)
 
     @property
     def expired(self) -> bool:
