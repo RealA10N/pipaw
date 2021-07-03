@@ -31,9 +31,8 @@ class cache:
         of the function call for a certion amount of time, as specified with the
         `delta` parameter (using a timedelta instance).
 
-        When using the function, use the keyword-argument `bypass_cache=True`
-        to force re-calling the function without loading it from the saved
-        cache. """
+        When using the function, use the keyword-argument `bypass_cache=True` to
+        force re-calling the function without loading it from the saved cache. """
 
         delta = timedelta(days=days, seconds=seconds, microseconds=microseconds,
                           milliseconds=milliseconds, minutes=minutes, hours=hours,
@@ -61,7 +60,10 @@ class cache:
     def forever(cls, func: typing.Callable):
         """ A decorator that caches the function value forever. Stores a collection
         of caches that depend on the arguments and keyword-arguments that are passed
-        to the function. """
+        to the function.
+
+        When using the function, use the keyword-argument `bypass_cache=True` to
+        force re-calling the function without loading it from the saved cache. """
 
         caches = typing.Dict[int, typing.Any]
 
@@ -77,7 +79,7 @@ class cache:
 
     @staticmethod
     def _hash_args(*args, **kwargs):
-        """ Recives a list of arguments and keyword-arguments, and returns a
-        hash that represents those arguments. """
+        """ Recives a list of arguments and keyword-arguments, and returns a hash
+        that represents those arguments. """
 
         return hash((args, tuple(kwargs.items()),))
