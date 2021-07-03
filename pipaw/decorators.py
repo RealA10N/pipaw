@@ -39,15 +39,14 @@ class cache:
                           milliseconds=milliseconds, minutes=minutes, hours=hours,
                           weeks=weeks)
 
-        def decorator(func):
+        def decorator(func: typing.Callable):
             caches: typing.Dict[int, TimedCache] = dict()
 
             def timed_func(*args, **kwargs):
                 key = cls._hash_args(*args, **kwargs)
-
-                old_cache = caches.get(key)
                 bypass = kwargs.pop('bypass_cache', False)
 
+                old_cache = caches.get(key)
                 if bypass or not old_cache or old_cache.expired:
                     caches[key] = TimedCache(
                         value=func(*args, **kwargs),
@@ -59,7 +58,7 @@ class cache:
         return decorator
 
     @classmethod
-    def forever(cls, func):
+    def forever(cls, func: typing.Callable):
         """ A decorator that caches the function value forever. Stores a collection
         of caches that depend on the arguments and keyword-arguments that are passed
         to the function. """
@@ -68,7 +67,9 @@ class cache:
 
         def cached_func(*args, **kwargs):
             key = cls._hash_args(*args, **kwargs)
-            if key not in caches:
+            bypass = kwargs.pop('bypass_cache', False)
+
+            if key not in caches or bypass:
                 caches[key] = func(*args, **kwargs)
             return caches[key]
 
