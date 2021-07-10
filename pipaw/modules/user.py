@@ -6,6 +6,29 @@ from .. import modules
 class InstagramUser(modules.InstagramModule):
     """ An object that represents a single Instagram user. """
 
+    # Profile information
+    username: str
+    full_name: str
+    category: str
+    biography: str
+    external_url: str
+
+    # Booleans
+    is_private: bool
+    is_verified: bool
+    is_memorialized: bool
+    is_business: bool
+    has_anonymous_profile_picture: bool
+
+    # Media
+    media_count: int
+    follower_count: int
+    following_count: int
+    total_igtv_videos: int
+    total_ar_effects: int
+
+    # TODO: Profile picture wrapper
+
     def _lookup(self,) -> None:
         'Retrive data about the user using the api. '
         self._data = self._api.user_info(self.pk).get('user')
