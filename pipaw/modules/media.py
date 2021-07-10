@@ -12,7 +12,7 @@ class InstagramPost(modules.InstagramModule):
     accessed using the `medias` property. """
 
     def _lookup(self,) -> None:
-        self._api.media_info(self.pk)
+        self._data = self._api.media_info(self.pk)
 
     @property
     def link(self,) -> str:
