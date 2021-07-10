@@ -4,7 +4,7 @@ from ..api import Client
 from ..exceptions import PKError
 
 
-class IntagramModule(ABC):
+class InstagramModule(ABC):
 
     def __init__(self,
                  api: Client,
@@ -38,3 +38,12 @@ class IntagramModule(ABC):
     def __repr__(self,) -> str:
         cls = self.__class__.__name__
         return f'{cls}(pk={self.pk})'
+
+    def __eq__(self, other) -> bool:
+        return self.pk == other
+
+    def __ne__(self, other) -> bool:
+        return self.pk != other
+
+    def __hash__(self,) -> int:
+        return hash(self.pk)
