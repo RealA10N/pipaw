@@ -32,10 +32,10 @@ class InstagramModule(ABC):
 
     def get(self, name: str, default=None):
         try:
-            return self.data[name]
+            return self._data[name]
         except LookupError:
             self._lookup()
-            return self.data.get(name, default)
+            return self._data.get(name, default)
 
     def __getattr__(self, name: str):
         return self.get(name)
