@@ -22,7 +22,7 @@ class InstagramModule(ABC):
         if self.pk is None:
             raise PKError('PK not found')
 
-        if self.pk != pk:
+        if pk is not None and self.pk != pk:
             raise PKError("Given PK doesn't match initial data")
 
     @abstractmethod
