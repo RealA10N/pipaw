@@ -9,14 +9,20 @@ if typing.TYPE_CHECKING:
     from ..api import Client
 
 
-class InstagramModule(ABC):
+class InstagramBase:
+
+    def __init__(self, api: 'Client'):
+        self._api = api
+
+
+class InstagramModule(InstagramBase, ABC):
 
     def __init__(self,
                  api: 'Client',
                  pk: int = None,
                  initial_data: dict = None,
                  ) -> None:
-        self._api = api
+        super().__init__(api)
         self._data = initial_data or dict(pk=pk)
 
         if self.pk is None:
