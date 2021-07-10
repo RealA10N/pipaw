@@ -11,6 +11,11 @@ class InstagramPost(modules.InstagramModule):
     Each instagram post can contain up to 10 images or videos, and they can be
     accessed using the `medias` property. """
 
+    code: str               # A unique code that represents the post
+    taken_at: int           # Unix timestamp when posted
+    comment_count: int      # Number of comments on post
+    has_liked: bool         # `True` if the api user has liked the post
+
     def _lookup(self,) -> None:
         self._data = self._api.media_info(self.pk)
 
