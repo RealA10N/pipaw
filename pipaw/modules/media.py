@@ -7,7 +7,7 @@ from .. import modules
 class MediaTypes:
     """ The Instagram API uses numbers to catalog different media types.
     In the API, a photo is represented by the integer `1`, a video by the
-    integer `2` and a collection of videos and photos (album / carousel post) 
+    integer `2` and a collection of videos and photos (album / carousel post)
     by the integer `3`. """
 
     PHOTO = 1
@@ -137,7 +137,7 @@ class InstagramMedia:
 class InstagramVideo(InstagramMedia):
     """ An object that represents a video from the Instagram servers. One media
     usually has multiple versions in different sizes and qualities, and they are
-    all accessible via the `video_versions` property. 
+    all accessible via the `video_versions` property.
 
     The `url`, `width`, `height`, and `size` properties will return information
     from the version with the heighest quality.
