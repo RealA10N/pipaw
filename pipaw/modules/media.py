@@ -1,4 +1,5 @@
 import typing
+from datetime import datetime
 
 from .. import modules
 
@@ -22,6 +23,13 @@ class InstagramPost(modules.InstagramModule):
     @property
     def link(self,) -> str:
         return f'https://www.instagram.com/p/{self.code}/'
+
+    @property
+    def created(self,) -> datetime:
+        """ The exact moment in which the post was uploaded to the Instagram
+        servers, as a `datetime` instance. """
+
+        return datetime.fromtimestamp(self._data.get('taken_at'))
 
     @property
     def user(self,) -> 'modules.InstagramUser':
