@@ -1,10 +1,9 @@
 import typing
 
-from .base import InstagramModule
-from .media import InstagramPost
+from .. import modules
 
 
-class InstagramUser(InstagramModule):
+class InstagramUser(modules.InstagramModule):
     """ An object that represents a single Instagram user. """
 
     def _lookup(self,) -> None:
@@ -16,7 +15,7 @@ class InstagramUser(InstagramModule):
         'The link to the user profile. '
         return f'https://www.instagram.com/{self.username}/'
 
-    def posts(self,) -> typing.Generator[InstagramPost, None, None]:
+    def posts(self,) -> typing.Generator['modules.InstagramPost', None, None]:
         """ Returns a generator that generates `InstagramPost` instances for
         all posts in the current user feed, from newest (first) to oldest
         (last). """
@@ -37,12 +36,12 @@ class InstagramUser(InstagramModule):
             res = self._api.user_feed(self.pk, **params)
             yield from self.__posts_from_feed_data(res)
 
-    def __posts_from_feed_data(self, data: dict) -> typing.List[InstagramPost]:
+    def __posts_from_feed_data(self, data: dict) -> typing.List['modules.InstagramPost']:
         """ Recives the raw feed response from the api, and wraps the data with
         InstagramPost instances. """
 
         for item in data.get('items', list()):
-            yield InstagramPost(self._api, initial_data=item)
+            yield modules.InstagramPost(self._api, initial_data=item)
 
     def __str__(self,) -> str:
         return self.username

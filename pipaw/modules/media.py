@@ -1,11 +1,12 @@
 import typing
-from .base import InstagramModule
 
-if typing.TYPE_CHECKING:
-    from .comment import InstagramComment
+from .. import modules
+
+# if typing.TYPE_CHECKING:
+# from .comment import InstagramComment
 
 
-class InstagramPost(InstagramModule):
+class InstagramPost(modules.InstagramModule):
     """ An object that represents a single Instagram post.
     Each instagram post can contain up to 10 images or videos, and they can be
     accessed using the `medias` property. """
