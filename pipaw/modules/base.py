@@ -1,13 +1,18 @@
+import typing
 from abc import ABC, abstractmethod
 
-from ..api import Client
 from ..exceptions import PKError
+
+if typing.TYPE_CHECKING:
+    # Imports that aren't actually used at runtime,
+    # and only useful for type checking.
+    from ..api import Client
 
 
 class InstagramModule(ABC):
 
     def __init__(self,
-                 api: Client,
+                 api: 'Client',
                  pk: int = None,
                  initial_data: dict = None,
                  ) -> None:
