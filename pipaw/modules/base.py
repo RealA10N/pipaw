@@ -10,12 +10,15 @@ if typing.TYPE_CHECKING:
 
 
 class InstagramBase:
+    _api: 'Client'  # The API client object
 
     def __init__(self, api: 'Client'):
         self._api = api
 
 
 class InstagramModule(InstagramBase, ABC):
+    pk: int  # A unique number used to identify the data across the api.
+    _data: dict  # The data, as received form the API.
 
     def __init__(self,
                  api: 'Client',
