@@ -29,6 +29,7 @@ setup(
         'dev': [
             'pytest',
             'pytest-cov',
+            'flake8',
         ],
     },
     packages=find_packages(),
