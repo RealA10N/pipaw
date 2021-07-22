@@ -24,7 +24,9 @@ setup(
     description='A client interface for the private Instagram API.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    install_requires=[],
+    install_requires=[
+        'dataclasses; python_version < "3.7"',
+    ],
     extras_require={
         'dev': [
             'pytest',
