@@ -29,9 +29,11 @@ jobs:
           --statistics
 
       - name: Test 🎯
+        continue-on-error: true
         run: >
           python -m pytest
           --cov-report xml
+          --cov-report term
           --cov pipaw
 
       - name: Upload coverage 🌴
