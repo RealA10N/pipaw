@@ -1,5 +1,6 @@
 # PIPAW: The Python Instagram Private API Wrapper
 
+[![codecov](https://codecov.io/gh/RealA10N/pipaw/branch/dev/graph/badge.svg)](https://codecov.io/gh/RealA10N/pipaw)
 
 A Python wrapper for the Instagram private API.
 PIPAW emulates an android device and gives you full access to Instagram features
