@@ -1,0 +1,38 @@
+name: ✔ Test
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [3.6, 3.7, 3.8, 3.9]
+    steps:
+      - name: Clone 👀
+        uses: actions/checkout@v2
+
+      - name: Setup Python ${{ matrix.version }} 🐍
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.version }}
+
+      - name: Install modules 🏗
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .[dev]
+
+      - name: Check 🤠
+        run: >
+          python -m flake8 . --count
+          --select=E9,F63,F7,F82
+          --show-source
+          --statistics
+
+      - name: Test 🎯
+        run: >
+          python -m pytest
+          --cov-report xml
+          --cov pipaw
+
+      - name: Upload coverage 🌴
+        uses: codecov/codecov-action@v2

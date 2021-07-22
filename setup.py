@@ -20,11 +20,17 @@ setup(
     author_email='lastmodified@gmail.com, downtown2u@gmail.com',
     license='MIT',
     url='https://github.com/reala10n/pipaw',
-    install_requires=[],
     keywords='instagram private api bot',
     description='A client interface for the private Instagram API.',
     long_description=long_description,
     long_description_content_type='text/markdown',
+    install_requires=[],
+    extras_require={
+        'dev': [
+            'pytest',
+            'pytest-cov',
+        ],
+    },
     packages=find_packages(),
     platforms=['any'],
     classifiers=[
